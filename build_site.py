@@ -76,7 +76,7 @@ def render_page(rows: list[tuple[str, int]], title: str, style_version: str = ""
         <h1 id="page-title">{safe_title}<span class="hero-accent">ที่อ่านสนุกขึ้น<span aria-hidden="true">✳</span></span></h1>
         <p class="hero-lead">ไฟล์ CSV หนึ่งไฟล์ กลายเป็นหน้ารายงานที่ดูง่าย พร้อมการตรวจโค้ดและเผยแพร่อัตโนมัติผ่าน GitHub Actions</p>
         <div class="hero-actions"><a class="button button-primary" href="#results">ดูตารางคะแนน <span aria-hidden="true">↘</span></a><a class="button button-outline" href="https://github.com/CarToon890/hello-python" target="_blank" rel="noopener noreferrer">ดูโค้ดบน GitHub ↗</a></div>
-        <p class="author">สร้างโดย สุรชัช ศาลาน้อย <span>·</span> 67160378</p>
+        <p class="author">สร้างโดย สุรชัช ศาลาน้อย <span>·</span> 67160378<br>รายวิชา 89033167 Web Application Development</p>
       </div>
       <div class="hero-art" aria-hidden="true"><div class="art-sun"></div><div class="art-dots"></div><div class="report-card"><div class="report-top"><span><i></i><i></i><i></i></span><small>scores.csv → index.html</small><b>↗</b></div><div class="report-body"><span class="art-label">SAMPLE SCORE / LIVE REPORT</span><strong>{mean:.2f}<small>AVG / 100</small></strong><div class="art-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="art-bottom">{len(rows):02d} RECORDS <b>✳</b> 01 WORKFLOW</span></div></div><div class="art-sticker">TESTED<br />&amp; SHIPPED!</div></div>
     </div></section>

@@ -1,6 +1,6 @@
 # Hello Python — Scoreboard
 
-โปรเจกต์ Python CI/CD ของ **สุรชัช ศาลาน้อย (67160378)** ตามใบงาน GitHub Actions ภาค 2
+โปรเจกต์ Python CI/CD ของ **สุรชัช ศาลาน้อย (67160378)** ในรายวิชา **89033167 Web Application Development** ตามใบงาน GitHub Actions ภาค 2
 
 เว็บไซต์: https://cartoon890.github.io/hello-python/  
 GitHub Actions: https://github.com/CarToon890/hello-python/actions
