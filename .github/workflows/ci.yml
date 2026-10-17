@@ -30,7 +30,7 @@ jobs:
       - name: Lint with Ruff
         run: ruff check .
       - name: Test with coverage
-        run: pytest --cov=grades --cov=build_site --cov-report=term-missing --cov-fail-under=80
+        run: python -m pytest --cov=grades --cov=build_site --cov-report=term-missing --cov-fail-under=80
 
   deploy:
     needs: test
