@@ -59,7 +59,7 @@ def test_main_writes_deployable_site(tmp_path: Path, monkeypatch: pytest.MonkeyP
     html = (output_dir / "index.html").read_text(encoding="utf-8")
     assert "ผลคะแนนของเรา" in html
     assert "มานี" in html
-    assert "style.css" in html
+    assert "style.css?v=" in html
     assert (output_dir / "style.css").read_text(encoding="utf-8") == "body { color: green; }"
 
 

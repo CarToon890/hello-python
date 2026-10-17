@@ -1,6 +1,7 @@
 """Build a static, escaped HTML report from sample scores in CSV."""
 
 import csv
+import hashlib
 import os
 import shutil
 from html import escape
@@ -38,7 +39,7 @@ def load_scores(path: Path) -> list[tuple[str, int]]:
     return rows
 
 
-def render_page(rows: list[tuple[str, int]], title: str) -> str:
+def render_page(rows: list[tuple[str, int]], title: str, style_version: str = "") -> str:
     """Create the report as a complete HTML document."""
     mean = average([score for _, score in rows])
     highest = max(score for _, score in rows)
@@ -51,6 +52,7 @@ def render_page(rows: list[tuple[str, int]], title: str) -> str:
         for index, (name, score) in enumerate(rows, start=1)
     )
     safe_title = escape(title)
+    stylesheet = "style.css" if not style_version else f"style.css?v={escape(style_version, quote=True)}"
     return f"""<!doctype html>
 <html lang="th">
 <head>
@@ -59,7 +61,7 @@ def render_page(rows: list[tuple[str, int]], title: str) -> str:
   <meta name="description" content="รายงานคะแนนตัวอย่างที่สร้างด้วย Python ตรวจด้วย pytest และเผยแพร่ผ่าน GitHub Actions">
   <meta name="theme-color" content="#fff9ef">
   <title>{safe_title} | Scoreboard Lab</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="{stylesheet}">
 </head>
 <body>
   <a class="skip-link" href="#main-content">ข้ามไปยังเนื้อหา</a>
@@ -102,8 +104,9 @@ def main() -> None:
     """Write the report and its stylesheet to the Pages artifact directory."""
     rows = load_scores(DATA_FILE)
     title = os.environ.get("SITE_TITLE", "รายงานผลคะแนน").strip() or "รายงานผลคะแนน"
+    style_version = hashlib.sha256(STYLE_FILE.read_bytes()).hexdigest()[:8]
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUTPUT_DIR / "index.html").write_text(render_page(rows, title), encoding="utf-8")
+    (OUTPUT_DIR / "index.html").write_text(render_page(rows, title, style_version), encoding="utf-8")
     shutil.copyfile(STYLE_FILE, OUTPUT_DIR / "style.css")
 
 
